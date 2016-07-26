@@ -10,7 +10,19 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="new-titles">
+    <%= f.fields_for :titles do |form| %>
+      <%= render partial: "title_fields", locals: {f: form} %>
+    <% end %>
+  </div>
+  <%= link_to_add_association 'Add Title', f, :titles, 'data-association-insertion-node' => ".new-titles", 'data-association-insertion-method' => "append", :wrap_object => @item.titles.build %>
+  <br><br>
+  <div class="new-codes">
+    <%= f.fields_for :codes do |form| %>
+      <%= render partial: "code_fields", locals: {f: form} %>
+    <% end %>
+  </div>
+  <%= link_to_add_association 'Add Code', f, :codes, 'data-association-insertion-node' => ".new-codes", 'data-association-insertion-method' => "append", :wrap_object => @item.codes.build %>
   <div class="field">
     <%= f.label :price %><br>
     <%= f.number_field :price %>
@@ -19,6 +31,7 @@
     <%= f.label :total_sold %><br>
     <%= f.number_field :total_sold %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
